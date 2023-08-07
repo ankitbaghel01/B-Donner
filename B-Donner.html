@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B-Donner</title>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-database.js"></script>
+    
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</head>
+<style>
+    body{
+        overflow-x: hidden;
+    }
+ main{
+  width: 95%;
+  
+ }
+    
+     a{
+        text-decoration: none;
+    }
+
+
+
+img{
+    width: 50%;
+    position: absolute;
+    top: 20%;
+    left: 1px;
+
+}
+@media screen and (max-width: 1000px) {
+    header .text-end button {
+    display: none;
+        
+    }
+    img{
+      display: none;
+    }
+    /* Other style adjustments for smaller screens */
+}
+
+
+</style>
+
+<body>
+   
+
+<header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">B-Donner</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="B-Donner.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="search.html">Search</a>
+              </li>
+            
+              <li class="nav-item">
+                <a class="nav-link " aria-disabled="true" href="about.html">About</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+              <button type="button" class="btn btn-outline-light me-2" ><a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+              </svg></a></button>
+
+            </form>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+
+   <main>
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1>
+          Please Register Here        </h1>
+ <img id="img"  src="blood-donation-2d-isolated-illustration-man-in-chair-on-blood-transfusion-donor-with-smiling-nurse-flat-characters-on-cartoon-background-charity-work-and-volunteering-colourful-scene-vector.jpg" alt="">
+       </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        
+
+  <div class="comment-bar"></div>
+  <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" id="comment-form">
+      <div class="form-floating mb-3">
+
+        <input type="name" class="form-control" id="name-input" placeholder="enter name" >
+        <label for="name-input">Enter Name</label>
+      </div>
+     
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="name-email" placeholder="name@example.com" required>
+        <label for="name-email">Email address</label>
+      </div>
+     
+      <div class="form-floating mb-3">
+       
+       <select name="bg" class="form-control" id="bloodgroup" data-bs-toggle="dropdown">
+         <option >A+</option>
+         <option >A-</option>
+         <option >B+</option>
+         
+         <option >B-</option>
+         
+         <option >AB+</option>
+            <option >AB-</option>
+            <option >O+</option>
+  
+            <option >O-</option>
+  
+          
+  
+  
+        </select>
+        <label for="blood">Enter Blood Group</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="name" class="form-control" id="city" placeholder="enter city" >
+        <label for="city">Enter city</label>
+      </div>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" >Sign up</button>
+      <hr class="my-4">
+      <small class="text-body-secondary">Thank You.</small>
+    </form>
+    
+    <!-- <div id="comment-container"></div> -->
+      </div>
+    </div>
+  </main>
+  
+
+
+
+
+  
+
+
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-database.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+  
+const firebaseConfig = {
+    apiKey: "AIzaSyBrT1sGiaihlQIqLoNkuw0osr17Zd_Air0",
+    authDomain: "blood-48088.firebaseapp.com",
+    databaseURL: "https://blood-48088-default-rtdb.firebaseio.com",
+    projectId: "blood-48088",
+    storageBucket: "blood-48088.appspot.com",
+    messagingSenderId: "58631460142",
+    appId: "1:58631460142:web:bc7166932731dd839596bf",
+    measurementId: "G-LP72F9V5GV"
+    };
+    
+    
+        firebase.initializeApp(firebaseConfig);
+    
+    
+    var commentsRef = firebase.database().ref('blood');
+    
+    
+    document.getElementById('comment-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    var name = document.getElementById('name-input').value;
+    var email = document.getElementById('name-email').value;
+    // var password = document.getElementById('name-password').value;
+    var blood = document.getElementById('bloodgroup').value;
+    
+    
+    var city = document.getElementById('city').value;
+    
+    
+    commentsRef.push({
+        name: name,
+        email:email,
+        blood:blood,
+        city:city
+       
+    
+    });
+    document.getElementById('name-input').value = '';
+    document.getElementById('name-email').value = '';
+    // document.getElementById('name-password').value = '';
+    document.getElementById('bloodgroup').value = '';
+    
+    document.getElementById('city').value = '';
+    });
+    
+
+
+
+
+
+
+    //fetches the comments from the Firebase database and displays 
+    // function displayComments() {
+    //     commentsRef.on('value', function (snapshot) {
+    //         var comments = snapshot.val();
+    //         var commentList = [];
+    //         for (var key in comments) {
+    //             var comment = comments[key];
+    //             commentList.push('<div><strong>' + comment.name + ': </strong>' + comment.comment + comment.email +comment.city +'</div>');
+    //         }
+    //         document.getElementById('comment-container').innerHTML = commentList.join('');
+    //     });
+    // }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function displayComments() {
+    commentsRef.on('value', function (snapshot) {
+        var comments = snapshot.val();
+        var commentList = [];
+    
+        for (var key in comments) {
+            var comment = comments[key];
+            var commentElement = document.createElement('div');
+            commentElement.classList.add('comment');
+    
+            var nameElement = document.createElement('strong');
+            nameElement.textContent = 'Name:'+comment.name ;
+            commentElement.appendChild(nameElement);
+    
+            var textElement = document.createElement('div');
+            textElement.textContent = 'Blood:'+comment.blood;
+            commentElement.appendChild(textElement);
+    
+            var emailElement = document.createElement('div');
+            emailElement.textContent = 'Email: ' + comment.email;
+            commentElement.appendChild(emailElement);
+    
+            var cityElement = document.createElement('div');
+            cityElement.textContent = 'City: ' + comment.city;
+            commentElement.appendChild(cityElement);
+    
+            commentList.push(commentElement);
+        }
+    
+        var commentContainer = document.getElementById('comment-container');
+        commentContainer.innerHTML = '';
+        commentList.forEach(function (commentElement) {
+            commentContainer.appendChild(commentElement);
+        });
+    });}   
+    
+    
+    
+    displayComments();
+    
+    
+</script>
+
+<!-- <script src="node.js"></script> -->
+</body>
+</html>

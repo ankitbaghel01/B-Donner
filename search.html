@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B-Donner</title>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-database.js"></script>
+    
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</head>
+<style>
+    #search-form{
+        overflow-x: hidden;
+        width: 90%;
+        
+    }
+    header{
+      width: 100%;
+    }
+
+ main{
+  width: 95%;
+  
+ }
+    
+     a{
+        text-decoration: none;
+    }
+/* 
+#out{
+  position: absolute;
+  right: 2px;
+} */
+
+img{
+    width: 50%;
+    position: absolute;
+    top: 20%;
+    left: 1px;
+
+}
+</style>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">B-Donner</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="B-Donner.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="search.html">Search</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link " aria-disabled="true"href="about.html">About</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search" id="out">
+          <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+          <button type="button" class="btn btn-outline-light me-2" ><a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+            <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+          </svg></a></button>
+
+        </form>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+
+  <form id="search-form">
+    <div class="form-group">
+      <label for="search-blood-group">Search by Blood Group:</label>
+      <select class="form-control" id="search-blood-group">
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        <!-- Add other blood group options -->
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="search-city">Search by City:</label>
+      <input type="text" class="form-control" id="search-city" placeholder="Enter city">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+</div>
+
+
+
+
+  <div id="comment-container"></div>
+
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+    apiKey: "AIzaSyBrT1sGiaihlQIqLoNkuw0osr17Zd_Air0",
+    authDomain: "blood-48088.firebaseapp.com",
+    databaseURL: "https://blood-48088-default-rtdb.firebaseio.com",
+    projectId: "blood-48088",
+    storageBucket: "blood-48088.appspot.com",
+    messagingSenderId: "58631460142",
+    appId: "1:58631460142:web:bc7166932731dd839596bf",
+    measurementId: "G-LP72F9V5GV"
+    };
+    
+    
+    firebase.initializeApp(firebaseConfig);
+
+
+  var commentsRef = firebase.database().ref('blood');
+
+    function displayComments(comments) {
+      var commentContainer = document.getElementById('comment-container');
+      commentContainer.innerHTML = '';
+
+      var table = document.createElement('table');
+      table.className = 'table table-bordered';
+
+      var headerRow = table.insertRow();
+      var headers = ['Name', 'Email', 'Blood Group', 'City'];
+      headers.forEach(function (headerText) {
+        var headerCell = document.createElement('th');
+        headerCell.textContent = headerText;
+        headerRow.appendChild(headerCell);
+      });
+
+      comments.forEach(function (comment) {
+        var row = table.insertRow();
+        var cells = [comment.name, comment.email, comment.blood, comment.city];
+        cells.forEach(function (cellText) {
+          var cell = row.insertCell();
+          cell.textContent = cellText;
+        });
+      });
+
+      commentContainer.appendChild(table);
+    }
+
+    commentsRef.on('value', function (snapshot) {
+      var comments = [];
+      snapshot.forEach(function (childSnapshot) {
+        comments.push(childSnapshot.val());
+      });
+
+      displayComments(comments);
+    });
+
+    document.getElementById('search-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      var searchBloodGroup = document.getElementById('search-blood-group').value;
+      var searchCity = document.getElementById('search-city').value;
+
+      var filteredComments = [];
+      commentsRef
+        .orderByChild('blood')
+        .equalTo(searchBloodGroup)
+        .once('value', function (snapshot) {
+          snapshot.forEach(function (childSnapshot) {
+            filteredComments.push(childSnapshot.val());
+          });
+
+          if (searchCity) {
+            filteredComments = filteredComments.filter(function (comment) {
+              return comment.city.toLowerCase() === searchCity.toLowerCase();
+            });
+          }
+
+          displayComments(filteredComments);
+        });
+    });
+ 
+
+
+
+
+
+  </script>
+</body>
+
+</html>

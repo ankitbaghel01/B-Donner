@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</head>
+<style>
+    form{
+        width: 30%;
+        position: absolute;
+        top: 20%;
+        left: 35%;
+    }
+    button{
+        text-decoration: none;
+    }
+
+
+button{
+  background-color: #2a00e6;
+  color: rgb(255, 255, 255);
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 30px;
+}
+
+
+   button:link, button:visited {
+  background-color: #2a00e6;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 30px;
+
+}
+
+button:hover, button:active {
+  background-color: #00198a;
+}
+
+</style>
+<body >
+
+
+   
+
+
+
+
+    <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" id="myForm">
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button id="submitButton">Login</button>
+
+        <!-- <a href="home.html" target="_blank" id="submitButton">Login</a>    -->
+        <!-- <button type="button" class="btn btn-warning" id="moveButton" ></button> -->
+             <hr class="my-4">
+        <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
+      </form>
+      
+
+
+      <script>
+      const form = document.getElementById('myForm');
+const usernameInput = document.getElementById('floatingInput');
+const passwordInput = document.getElementById('floatingPassword');
+const submitButton = document.getElementById('submitButton');
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const usernameValue = usernameInput.value;
+    const passwordValue = passwordInput.value;
+
+    if (usernameValue && passwordValue) {
+        // Redirect to another HTML page when form is filled out
+        window.location.href = 'B-Donner.html';
+    } else {
+        alert('Please fill out all fields');
+    }
+});
+      </script>
+</body>
+</html>
